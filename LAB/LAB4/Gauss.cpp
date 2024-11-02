@@ -56,7 +56,7 @@ vector<double> Gauss(vector<vector<double>> &A, vector<double> &Coeff, int n, do
 #pragma omp parallel for
         for (int j = i + 1; j < n; j++)
         {
-            int thread_id = omp_get_thread_num();  
+            int thread_id = omp_get_thread_num();
             cout << "Thread " << thread_id << " is working on row " << j << " for pivot row " << i << endl;
 
             double multiplier = A[j][i] / A[i][i];
@@ -85,9 +85,52 @@ vector<double> Gauss(vector<vector<double>> &A, vector<double> &Coeff, int n, do
     return x;
 }
 
+// int main()
+// {
+//     // Define the size of the matrix
+//     int n = 3; // Since we have 3 equations
+//     vector<vector<double>> A(n, vector<double>(n));
+//     vector<double> Coeff(n);
+
+//     // Initialize the matrix A and vector Coeff with specific values
+//     A[0] = {1, -1, 1}; // Coefficients for x - y + z = 4
+//     A[1] = {1, -4, 2}; // Coefficients for x - 4y + 2z = 8
+//     A[2] = {1, 2, 8};  // Coefficients for x + 2y + 8z = 12
+//     Coeff[0] = 4;      // Right side of the first equation
+//     Coeff[1] = 8;      // Right side of the second equation
+//     Coeff[2] = 12;     // Right side of the third equation
+
+//     cout << "Matrix A : \n";
+//     printMatrix(A);
+//     cout << "\nVector Coeff:\n";
+//     printVector(Coeff);
+    
+//     double execution_time = 0.0;
+//     vector<double> x = Gauss(A, Coeff, n, execution_time);
+
+//     // Print the upper triangular matrix after Gaussian elimination
+//     cout << "Matrix Size: " << n << endl;
+//     cout << "Upper Triangular Matrix A after Gaussian Elimination:\n";
+//     printMatrix(A);
+
+//     // Print vector b (Coefficients)
+//     cout << "\nVector Coeff after Gaussian Elimination:\n";
+//     printVector(Coeff);
+
+//     // Print the solution vector x
+//     cout << "\nSolution Vector x:\n";
+//     printVector(x);
+
+//     // Print execution time
+//     cout << "\nTime Taken: " << execution_time << " seconds\n";
+//     cout << "---------------------------------------------------------------\n";
+
+//     return 0;
+// }
+
 int main()
 {
-    vector<int> sizes = {2, 3, 5, 10};  
+    vector<int> sizes = {2, 3, 5, 10};
 
     for (int size : sizes)
     {
@@ -99,6 +142,9 @@ int main()
         generateRandomValues(A, Coeff, n);
         cout << "Matrix A : \n";
         printMatrix(A);
+        cout << "\nVector Coeff:\n";
+        printVector(Coeff);
+
         double execution_time = 0.0;
         vector<double> x = Gauss(A, Coeff, n, execution_time);
 
@@ -107,8 +153,6 @@ int main()
         cout << "Upper Triangular Matrix A after Gaussian Elimination:\n";
         printMatrix(A);
 
-        cout << "\nVector Coeff:\n";
-        printVector(Coeff);
         // Print vector b (Coefficients)
         cout << "\nVector Coeff after Gaussian Elimination:\n";
         printVector(Coeff);
