@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "iostream": "cpp",
+        "montecarlo_simulationparallel": "cpp",
+        "ostream": "cpp"
+    }
+}
